@@ -1,0 +1,6 @@
+torch
+matplotlib
+pytorch_forecasting
+numpy==1.22
+pandas 
+pytorch_lightning==1.9.2
