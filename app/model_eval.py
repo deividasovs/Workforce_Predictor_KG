@@ -10,10 +10,10 @@ def get_prediction(data):
 
     # For testing purposes, should be created otherwise
     #./test_new_data1.csv when deploying!
-    #test_data = "./app/test_new_data1.csv"
+    #test_data = "./test_new_data1.csv"
     #data = pre_process_data(test_data)
     
-    data = pre_process_data(data)
+    #data = pre_process_data(data)
 
     saved_tft = TemporalFusionTransformer.load_from_checkpoint(modelPath)
 
