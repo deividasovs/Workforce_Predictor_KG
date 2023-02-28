@@ -30,4 +30,3 @@ class TestData(Dataset):
     def __len__ (self):
         return len(self.X_data)
     
-
