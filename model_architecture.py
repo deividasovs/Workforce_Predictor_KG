@@ -2,7 +2,6 @@ from pytorch_forecasting import TemporalFusionTransformer, TimeSeriesDataSet
 from pytorch_forecasting.metrics import QuantileLoss, MultiLoss
 from ipynb.fs.full.training_preprocessing import GetDataset
 
-
 df = GetDataset()
 
 max_prediction_length = 9*7  # How many datapoints will be predicted (~1 week)
@@ -30,7 +29,7 @@ training = TimeSeriesDataSet(
     time_varying_known_reals=["time_idx", 'holiday', 'rain',
                               'temperature', 'hour', 'year', 'month', 'day'],
     time_varying_unknown_reals=[
-        "subtotal",
+        #"subtotal",
         "transaction_count",
         "oil_price",
         "workforce_type_1",

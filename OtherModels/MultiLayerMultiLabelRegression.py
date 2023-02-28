@@ -13,7 +13,7 @@ class MultiLayerMultiLabelRegression(nn.Module):
         self.linear = nn.Linear(b, output_size)
 
     def forward(self, x):
-        out = self.linear(out)
+        out = self.linear(x)
         out = nn.ReLU()
         out = self.linear(out)
         out = self.dropout(out)
