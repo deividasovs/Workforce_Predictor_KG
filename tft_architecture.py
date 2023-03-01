@@ -61,7 +61,6 @@ tft = TemporalFusionTransformer.from_dataset(
     dropout=0.1,
     hidden_continuous_size=16,
     output_size=[7, 7, 7, 7, 7],
-    # loss=QuantileLoss(),
     loss=MultiLoss([QuantileLoss(), QuantileLoss(),
                    QuantileLoss(), QuantileLoss(), QuantileLoss()]),
     log_interval=2,
