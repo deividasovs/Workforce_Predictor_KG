@@ -29,7 +29,7 @@ training = TimeSeriesDataSet(
     time_varying_known_reals=["time_idx", 'holiday', 'rain',
                               'temperature', 'hour', 'year', 'month', 'day'],
     time_varying_unknown_reals=[
-        #"subtotal",
+        "subtotal",
         "transaction_count",
         "oil_price",
         "workforce_type_1",
