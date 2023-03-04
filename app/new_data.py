@@ -54,8 +54,6 @@ def createNewData():
 
     df = pre_process_data(df)
 
-    # print(df)
-
     return df
 
 

@@ -4,10 +4,9 @@ from pytorch_forecasting import  TemporalFusionTransformer
 
 #modelPath = "./app/saved_models/bestCheckpoint1.pth"
 # ./lightning_logs/version_3/checkpoints/epoch=2-step=90.ckpt" when deploying!
-modelPath = "./app/lightning_logs/version_3/checkpoints/epoch=2-step=90.ckpt"
+modelPath = "./app/lightning_logs/version_36/checkpoints/epoch=20-step=630.ckpt"
 
 def get_prediction(data):
-
     # For testing purposes, should be created otherwise
     #./test_new_data1.csv when deploying!
     #test_data = "./test_new_data1.csv"
@@ -20,7 +19,7 @@ def get_prediction(data):
     predictions = saved_tft.predict(data)
 
     # Raw predictions for plotting purposes
-    #raw_predictions, x = saved_tft.predict(data, mode="raw", return_x=True, show_progress_bar=True)
+    #raw_predictions, x = saved_tft.predict(data, mode="raw", return_x=True, show_progress_bar=True
 
     #saved_tft.plot_prediction(x, raw_predictions, idx=0)
 
@@ -37,12 +36,8 @@ def get_prediction(data):
     #    image = f.read()
     #    image = base64.b64encode(image).decode('utf-8')
 
-
-
     #return predictions, image
     return predictions
-
-
 
 
 # For testing purposes
@@ -53,18 +48,3 @@ if __name__ == "__main__":
     predictions  = get_prediction(test_data)
 
     predictionResults = [predictions[0].cpu().detach().numpy(), predictions[1].cpu().detach().numpy()]
-
-    print(predictionResults[0])
-    # print(predictionResults[1]) -- employees
-
-    #json serialze the abc object
-    
-
-
-    
-
-# prediction 0 = transaction_count
-# prediction 1 = workforce_type_1
-# prediction 2 = workforce_type_2
-# prediction 3 = workforce_type_3
-# prediction 4 = workforce_type_4

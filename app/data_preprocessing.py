@@ -1,6 +1,4 @@
-import numpy as np
 import pandas as pd
-
 
 def pre_process_data(data):
     # convert csv data to pandas dataframe
@@ -26,5 +24,4 @@ def pre_process_data(data):
     df['workforce_type_3'] = df['workforce_type_3'].astype(float)
     df['workforce_type_4'] = df['workforce_type_4'].astype(float)
 
-#    print(df)
     return df
