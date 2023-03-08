@@ -17,7 +17,7 @@ training = TimeSeriesDataSet(
     # weight="weight",
     group_ids=["constant_group"],
     max_encoder_length=max_encoder_length,
-    min_encoder_length=8,
+    min_encoder_length=max_encoder_length // 2,
     max_prediction_length=max_prediction_length,
     static_reals=[],
     # List of categorical variables that do not change over time

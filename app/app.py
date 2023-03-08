@@ -1,3 +1,4 @@
+import requests
 from model_eval import get_prediction
 from data_postprocessing import predictionsToList, ceilRoundPredictions
 
@@ -6,11 +7,8 @@ from new_data import createNewData
 import json
 
 def lambda_handler(event, context):
-
-    # todo: use the passed in csv data, get data from various sources (oil, weather) to make prediction
-    #input_data = event['prediction']
-
-    input_data = createNewData()
+    # fetch input data from data creator api https://some-link.com
+    input_data = requests.get("https://some-link.com").json()
 
     #predictions, image = get_prediction(input_data) Use to return the performance of the graph
     predictions = get_prediction(input_data)
@@ -44,10 +42,6 @@ def lambda_handler(event, context):
 
 # For testing purposes
 if __name__ == "__main__":
-    # load csv file to variable test_data
-    test_data = "./app/test_new_data1.csv" # TODO: New test data, this was trained on!
-    #test_data = "./app/xMonths_SimulatedStaff.csv"
-
     response = lambda_handler(None, None)
 
     # convert response string to json
