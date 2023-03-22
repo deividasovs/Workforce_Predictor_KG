@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "demand-forecaster"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-uua8kx0s89vi"
+s3_prefix = "demand-forecaster"
+region = "eu-west-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["ForecastFunction=050362355799.dkr.ecr.eu-west-1.amazonaws.com/demandforecaster16fbd65b/forecastfunction2edac9ffrepo"]
+disable_rollback = true

@@ -1,7 +1,5 @@
 from torch.utils.data import Dataset
 
-# Defining custom dataloaders
-## train data
 class TrainData(Dataset):
     def __init__(self, X_data, y_data):
         self.X_data = X_data
@@ -16,9 +14,6 @@ class TrainData(Dataset):
     def __len__ (self):
         return len(self.X_data)
 
-
-
-## test data    
 class TestData(Dataset):
     
     def __init__(self, X_data):
@@ -29,4 +24,3 @@ class TestData(Dataset):
         
     def __len__ (self):
         return len(self.X_data)
-    

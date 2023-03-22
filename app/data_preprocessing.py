@@ -7,17 +7,22 @@ def pre_process_data(data):
     if(type(data) == pd.DataFrame):
         df = data
 
+    # convert Timestamp unix format to dateTime
+
+    df.reset_index(drop=False, inplace=True)
+    df.index = df.index.astype(int)
+
     df["time_idx"] = df.index  # TODO: turn this into some maths function?
 
-    dateTime = pd.to_datetime(df['Timestamp']).dt
+    date_time = pd.to_datetime(df['Timestamp']).dt
 
     df["constant_group"] = "group_1"
     df['transaction_count'] = df['transaction_count'].astype(float)
 
-    df["year"] = dateTime.year
-    df["month"] = dateTime.month
-    df["day"] = dateTime.day
-    df["hour"] = dateTime.hour
+    df["year"] = date_time.year
+    df["month"] = date_time.month
+    df["day"] = date_time.day
+    df["hour"] = date_time.hour
 
     df['workforce_type_1'] = df['workforce_type_1'].astype(float)
     df['workforce_type_2'] = df['workforce_type_2'].astype(float)

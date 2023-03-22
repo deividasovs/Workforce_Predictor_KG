@@ -1,3 +1,5 @@
+#-f https://download.pytorch.org/whl/torch_stable.html
+#torch==1.13.1+cpu
 torch==1.13.1
 matplotlib
 pytorch_forecasting

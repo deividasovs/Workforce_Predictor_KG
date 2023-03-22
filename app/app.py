@@ -1,23 +1,30 @@
+
 import requests
 from model_eval import get_prediction
-from data_postprocessing import predictionsToList, ceilRoundPredictions
-
-from new_data import createNewData
+from data_postprocessing import convert_predictions_to_list, ceil_round_predictions
+import pandas as pd
 
 import json
 
+#TEST_DYNAMIC_DATA_ENDPOINT = "http://127.0.0.1:8000/CreateDynamicDataset"
+DYNAMIC_DATA_ENDPOINT = "https://eh3xvfep7ae75yaor75tdpkv3q0wkszs.lambda-url.eu-west-1.on.aws/"
+
+# testing note:
+# host on port 8080 when testing locally
+# sam local start-api -p 8080
+
+# This is run every Sunday to generate the Data and forecasts for the next week
 def lambda_handler(event, context):
-    # fetch input data from data creator api https://some-link.com
-    input_data = requests.get("https://some-link.com").json()
+    input_data = requests.get(DYNAMIC_DATA_ENDPOINT).json()
 
-    #predictions, image = get_prediction(input_data) Use to return the performance of the graph
-    predictions = get_prediction(input_data)
+    df_input_data = pd.DataFrame(input_data)
 
-    predictions = predictionsToList(predictions)
-    predictions = ceilRoundPredictions(predictions)
+    predictions = get_prediction(df_input_data)
 
-    responseBody = {
-                #"image": image,
+    predictions = convert_predictions_to_list(predictions)
+    predictions = ceil_round_predictions(predictions)
+
+    response_body = {
                 "transaction_count": predictions[0],
                 "dept1": predictions[1],
                 "dept2": predictions[2],
@@ -26,11 +33,11 @@ def lambda_handler(event, context):
             }
 
 
-    responseBody = json.dumps(responseBody)
+    response_body = json.dumps(response_body)
 
     return {
         'statusCode': 200,
-        'body': responseBody,
+        'body': response_body,
         'headers': {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -39,12 +46,12 @@ def lambda_handler(event, context):
         }
     }
 
-
 # For testing purposes
 if __name__ == "__main__":
     response = lambda_handler(None, None)
-
-    # convert response string to json
     response = json.loads(response['body'])
+    
+    with open("data.json", "w") as outfile:
+        json.dump(response, outfile)
 
     print(response['transaction_count'])

@@ -1,8 +1,8 @@
 from pytorch_forecasting import TemporalFusionTransformer, TimeSeriesDataSet
 from pytorch_forecasting.metrics import QuantileLoss, MultiLoss
-from ipynb.fs.full.training_preprocessing import GetDataset
+from ipynb.fs.full.training_preprocessing import get_dataset
 
-df = GetDataset()
+df = get_dataset()
 
 max_prediction_length = 9*7  # How many datapoints will be predicted (~1 week)
 max_encoder_length = 9*60  # Determines the look back period (~2 months)
