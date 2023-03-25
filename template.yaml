@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 
 Globals:
   Function:
-    Timeout: 50
+    Timeout: 250
     MemorySize: 256
   Api:
     Cors:
@@ -16,33 +16,12 @@ Resources:
   ForecastFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: app/
+      #CodeUri: app/
       PackageType: Image
       Architectures:
         - arm64
-      Events:
-        Predict:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            #Path: /predict
-            Path: "/{proxy+}"
-            Method: any
     Metadata:
       Dockerfile: Dockerfile
       DockerContext: ./app
-      DockerTag: python3.9-v1
 
 
-Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  ForecastApi:
-    Description: "API Gateway endpoint URL for Prod stage for Forecast function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/predict/"
-  ForecastFunction:
-    Description: "Forecast Lambda Function ARN"
-    Value: !GetAtt ForecastFunction.Arn
-  ForecastFunctionIamRole:
-    Description: "Implicit IAM Role created for Forecast function"
-    Value: !GetAtt ForecastFunctionRole.Arn

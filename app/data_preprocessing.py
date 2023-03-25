@@ -7,12 +7,10 @@ def pre_process_data(data):
     if(type(data) == pd.DataFrame):
         df = data
 
-    # convert Timestamp unix format to dateTime
-
     df.reset_index(drop=False, inplace=True)
     df.index = df.index.astype(int)
 
-    df["time_idx"] = df.index  # TODO: turn this into some maths function?
+    df["time_idx"] = df.index 
 
     date_time = pd.to_datetime(df['Timestamp']).dt
 

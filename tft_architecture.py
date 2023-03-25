@@ -14,13 +14,11 @@ training = TimeSeriesDataSet(
     time_idx="time_idx",
     target=["transaction_count", "workforce_type_1",
             "workforce_type_2", "workforce_type_3", "workforce_type_4"],
-    # weight="weight",
     group_ids=["constant_group"],
     max_encoder_length=max_encoder_length,
     min_encoder_length=max_encoder_length // 2,
     max_prediction_length=max_prediction_length,
     static_reals=[],
-    # List of categorical variables that do not change over time
     static_categoricals=['constant_group'],
     # List of categorical variables that change over time and are known in the future
     time_varying_known_categoricals=[],
