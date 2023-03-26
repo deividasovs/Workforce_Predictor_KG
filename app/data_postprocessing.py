@@ -1,8 +1,6 @@
 import math
 
 def convert_predictions_to_list(predictions):
-    #print(converted_predictions)
-
     converted_predictions = [
     predictions[0][0].cpu().detach().numpy().tolist(),
     predictions[1][0].cpu().detach().numpy().tolist(),

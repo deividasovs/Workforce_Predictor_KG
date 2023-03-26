@@ -6,18 +6,15 @@ import pandas as pd
 
 import json
 
-#TEST_DYNAMIC_DATA_ENDPOINT = "http://127.0.0.1:8000/CreateDynamicDataset"
 DYNAMIC_DATA_ENDPOINT = "https://eh3xvfep7ae75yaor75tdpkv3q0wkszs.lambda-url.eu-west-1.on.aws/"
 
-# testing note:
-# host on port 8080 when testing locally
-# sam local start-api -p 8080
-
-# This is run every Sunday to generate the Data and forecasts for the next week
+# Run every Sunday to generate the Data and forecasts for the next week
 def lambda_handler(event, context):
-    input_data = requests.get(DYNAMIC_DATA_ENDPOINT).json()
+    input_data = requests.get(DYNAMIC_DATA_ENDPOINT)
+    
+    input_data_json = input_data.json()
 
-    df_input_data = pd.DataFrame(input_data)
+    df_input_data = pd.DataFrame(input_data_json)
 
     predictions = get_prediction(df_input_data)
 
